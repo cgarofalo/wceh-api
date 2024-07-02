@@ -43,11 +43,11 @@ function wcehapi_custom_post_type() {
 			'public'              => true, // This needs to be true so Polylang can see the post type.
 			'show_ui'             => true,
 			'has_archive'         => false,
-			'hierarchical'        => false,
-			'show_in_rest'        => false,
+			'hierarchical'        => false, // This is not a hierarchical post type.
+			'show_in_rest'        => false, // Turn off block for this post type
 			'exclude_from_search' => true,
-			'menu_icon'           => wcehapi_get_svg( 'cat' ),
-			'capability_type'     => 'post',
+			'menu_icon'           => wcehapi_get_svg( 'cat' ), // Custom SVG icon, but a Dashicon slug can also be used.
+			'capability_type'     => 'post', // Same capabilities as a post.
 			'rewrite'             => [
 				'slug' => 'cats',
 			],

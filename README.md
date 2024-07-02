@@ -8,6 +8,11 @@ Word Camp Canada 2024. Plugin to demo custom API endpoints in WordPress.
 4. Create some new content in "Cats".
 5. Add some taxonomy terms to cats. (Colours, Breeds and Patterns)
 
+## Optional
+Install the [Polylang](https://wordpress.org/plugins/polylang/) plugin to have a translatable API endpoint.
+After installation, enable translations for the "Cats" post type and the "Colours", "Breeds" and "Patterns" taxonomies.
+[Polylang Documentation](https://polylang.pro/doc/multilingual-custom-post-types-and-taxonomies/)
+
 ## Usage
 Visit the following endpoints to see the data in JSON format.
 Note: Use [Firefox](https://www.mozilla.org/) or Chrome with the [JSONvue extension](https://chrome.google.com/webstore/detail/jsonvue/chklaanhfefbnpoihckbnefhakgolnmc) to view the JSON in a readable format.
@@ -22,6 +27,10 @@ The `cats` endpoint accepts the following parameters:
 - `/wp-json/wceh-api/v1/cats?breed=<breed slug>`
 - `/wp-json/wceh-api/v1/cats?pattern=<tabby slug>`
 - `/wp-json/wceh-api/v1/cats?page=<page number>`
+
+With Polylang installed, the `cats` endpoint will also accept the following parameter:
+(Note: Only `en` and `fr` are supported. This can be changed in the `api/cats.php` file. Line 28.)
+- `/wp-json/wceh-api/v1/cats?lang=<language code>`
 
 The parameters can be combined:
 

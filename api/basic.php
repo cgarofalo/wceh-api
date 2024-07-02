@@ -14,6 +14,7 @@ namespace WCEHAPI\plugin\API;
  */
 function get_basic() {
 
+	// All you need is an array of data.
 	$data = [
 		'cats' => [
 			[
@@ -37,5 +38,6 @@ function get_basic() {
 		],
 	];
 
+	// And then return it with WordPress' rest_ensure_response function.
 	return rest_ensure_response( $data );
 }

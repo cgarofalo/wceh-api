@@ -1,6 +1,7 @@
 <?php
 /**
  * The Top Secret Data for the API
+ * Can be accessed with an application password.
  *
  * @package wceh-api/plugin
  */
@@ -14,6 +15,7 @@ namespace WCEHAPI\plugin\API;
  */
 function get_secrets() {
 
+	// All you need is an array of data.
 	$data = [
 		'secrets' => [
 			[
@@ -35,5 +37,6 @@ function get_secrets() {
 		],
 	];
 
+	// And then return it with WordPress' rest_ensure_response function.
 	return rest_ensure_response( $data );
 }

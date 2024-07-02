@@ -107,8 +107,10 @@ function get_cats( object $request ) {
 		// Needed to build paginated results
 		$data['postCount'] = $cats->found_posts;
 
-		// Specify locale
-		$data['locale'] = $locale;
+		// If Polylang is installed, specify locale in the data output
+		if ( function_exists( 'pll_current_language' ) ) {
+			$data['locale'] = $locale;
+		}
 
 		while ( $cats->have_posts() ) {
 			$cats->the_post();
@@ -169,9 +171,10 @@ function get_cats( object $request ) {
 		return new \WP_Error(
 			'no_cats_found',
 			'No cats found',
-			[ 'status' => 200 ]
+			[ 'status' => 200 ] // This is 200, b/c we still want a valid response even if empty.
 		);
 	}
 
+	// Return the data using WordPress' rest_ensure_response function.
 	return rest_ensure_response( $data );
 }

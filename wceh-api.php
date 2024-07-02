@@ -162,26 +162,3 @@ function wcehapi_get_svg( $icon ) {
 
 	return $svg;
 }
-
-// Bonus: Restrict User endpoints
-add_filter( 'rest_endpoints', 'wcehapi_restrict_user_endpoints' );
-
-/**
- * Remove user endpoints for unauthorized users.
- *
- * @param  array $endpoints Array of endpoints
- *
- * @return array $endpoints Filtered list of endpoints
- */
-function wcehapi_restrict_user_endpoints( $endpoints ) {
-	if ( ! is_user_logged_in() ) {
-		if ( isset( $endpoints['/wp/v2/users'] ) ) {
-			unset( $endpoints['/wp/v2/users'] );
-		}
-		if ( isset( $endpoints['/wp/v2/users/(?P<id>[\d]+)'] ) ) {
-			unset( $endpoints['/wp/v2/users/(?P<id>[\d]+)'] );
-		}
-	}
-
-	return $endpoints;
-}

@@ -41,19 +41,4 @@ function register_routes() {
 			'permission_callback' => '__return_true', // public endpoint
 		]
 	);
-
-	// wp-json/wceh/v1/secrets
-	// Authenticate with Application Passwords
-	// https://make.wordpress.org/core/2020/11/05/application-passwords-integration-guide/
-	register_rest_route(
-		$namespace,
-		'/secrets',
-		[
-			'methods'             => 'GET',
-			'callback'            => __NAMESPACE__ . '\\get_secrets',
-			'permission_callback' => function () {
-				return current_user_can( 'update_plugins' ); // Only logged-in users with the update_plugins capability can access this endpoint.
-			},
-		]
-	);
 }

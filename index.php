@@ -2,5 +2,5 @@
 /**
  * Silence is golden
  *
- * @package wcmtl-api/plugin
+ * @package wceh-api/plugin
  */

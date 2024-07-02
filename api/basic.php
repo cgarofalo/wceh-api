@@ -2,10 +2,10 @@
 /**
  * The Basic Cats Data for the API
  *
- * @package wcmtl-api/plugin
+ * @package wceh-api/plugin
  */
 
-namespace WCMTLAPI\plugin\API;
+namespace WCEHAPI\plugin\API;
 
 /**
  * Callback for the basic endpoint

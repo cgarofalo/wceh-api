@@ -1,5 +1,5 @@
-# wcmtl-api
-Word Camp Montreal 2023. Plugin to demo custom API endpoints in WordPress.
+# wceh-api
+Word Camp Canada 2024. Plugin to demo custom API endpoints in WordPress.
 
 ## Installation
 1. Download the plugin as a zip file.
@@ -12,20 +12,20 @@ Word Camp Montreal 2023. Plugin to demo custom API endpoints in WordPress.
 Visit the following endpoints to see the data in JSON format.
 Note: Use [Firefox](https://www.mozilla.org/) or Chrome with the [JSONvue extension](https://chrome.google.com/webstore/detail/jsonvue/chklaanhfefbnpoihckbnefhakgolnmc) to view the JSON in a readable format.
 
-- `/wp-json/wcmtl-api/v1/basic`
-- `/wp-json/wcmtl-api/v1/cats`
+- `/wp-json/wceh-api/v1/basic`
+- `/wp-json/wceh-api/v1/cats`
 
 The `cats` endpoint accepts the following parameters:
 
-- `/wp-json/wcmtl-api/v1/cats?q=<search term>`
-- `/wp-json/wcmtl-api/v1/cats?colour=<colour slug>`
-- `/wp-json/wcmtl-api/v1/cats?breed=<breed slug>`
-- `/wp-json/wcmtl-api/v1/cats?pattern=<tabby slug>`
-- `/wp-json/wcmtl-api/v1/cats?page=<page number>`
+- `/wp-json/wceh-api/v1/cats?q=<search term>`
+- `/wp-json/wceh-api/v1/cats?colour=<colour slug>`
+- `/wp-json/wceh-api/v1/cats?breed=<breed slug>`
+- `/wp-json/wceh-api/v1/cats?pattern=<tabby slug>`
+- `/wp-json/wceh-api/v1/cats?page=<page number>`
 
 The parameters can be combined:
 
-- `/wp-json/wcmtl-api/v1/cats?colour=<colour>&breed=<breed>&pattern=<tabby>`
+- `/wp-json/wceh-api/v1/cats?colour=<colour>&breed=<breed>&pattern=<tabby>`
 
 These parameters will filter the results with the AND operator. 
 There are 12 items per page.

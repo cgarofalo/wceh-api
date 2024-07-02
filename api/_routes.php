@@ -2,10 +2,10 @@
 /**
  * API for the plugin
  *
- * @package wcmtlapi/plugin
+ * @package wcehapi/plugin
  */
 
-namespace WCMTLAPI\plugin\API;
+namespace WCEHAPI\plugin\API;
 
 add_action( 'rest_api_init', __NAMESPACE__ . '\\register_routes' );
 
@@ -16,11 +16,11 @@ add_action( 'rest_api_init', __NAMESPACE__ . '\\register_routes' );
  */
 function register_routes() {
 	$version   = '1';
-	$namespace = 'wcmtl/v' . $version;
+	$namespace = 'wceh/v' . $version;
 
 	// Register Routes
 
-	// wp-json/wcmtl/v1/cats
+	// wp-json/wceh/v1/cats
 	register_rest_route(
 		$namespace,
 		'/cats',
@@ -31,7 +31,7 @@ function register_routes() {
 		]
 	);
 
-	// wp-json/wcmtl/v1/basic
+	// wp-json/wceh/v1/basic
 	register_rest_route(
 		$namespace,
 		'/basic',
@@ -42,7 +42,7 @@ function register_routes() {
 		]
 	);
 
-	// wp-json/wcmtl/v1/secrets
+	// wp-json/wceh/v1/secrets
 	// Authenticate with Application Passwords
 	// https://make.wordpress.org/core/2020/11/05/application-passwords-integration-guide/
 	register_rest_route(

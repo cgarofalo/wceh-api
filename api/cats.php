@@ -2,10 +2,10 @@
 /**
  * The Cats Data for the API
  *
- * @package wcmtl-api/plugin
+ * @package wceh-api/plugin
  */
 
-namespace WCMTLAPI\plugin\API;
+namespace WCEHAPI\plugin\API;
 
 /**
  * Generate the cats data for the API
@@ -21,18 +21,33 @@ function get_cats( object $request ) {
 	$colours  = $request['colours'];
 	$breeds   = $request['breeds'];
 	$patterns = $request['patterns'];
+	$locale   = $request['lang'] ?? 'en';
 	$page     = $request['page'] ?? 1;
+
+	// Return an error if the locale is not supported.
+	if ( ! in_array( $locale, [ 'en', 'fr' ], true ) ) {
+		return new \WP_Error(
+			'unsupported_locale',
+			'Unsupported locale',
+			[ 'status' => 400 ]
+		);
+	}
 
 	// Build the query.
 	$posts_per_page = 12;
 	$status         = 'publish';
 
 	$args = [
-		'post_type'      => 'wcmtlapi_cat',
+		'post_type'      => 'wcehapi_cat',
 		'posts_per_page' => $posts_per_page,
 		'post_status'    => $status,
 		'paged'          => $page,
 	];
+
+	// if Polylang is installed, set the locale
+	if ( function_exists( 'pll_current_language' ) ) {
+		$args['lang'] = $locale;
+	}
 
 	// If there's a search term, search for it.
 	if ( $query ) {
@@ -91,6 +106,9 @@ function get_cats( object $request ) {
 	if ( $cats->have_posts() ) {
 		// Needed to build paginated results
 		$data['postCount'] = $cats->found_posts;
+
+		// Specify locale
+		$data['locale'] = $locale;
 
 		while ( $cats->have_posts() ) {
 			$cats->the_post();

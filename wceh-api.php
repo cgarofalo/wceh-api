@@ -1,22 +1,22 @@
 <?php
 /**
- * Plugin Name: WordCamp Montreal API Demo
- * Plugin URI: https://github.com/plank/wcmtl-api
+ * Plugin Name: WordCamp Canada API Demo
+ * Plugin URI: https://github.com/cgarofalo/wceh-api
  * Description: A plugin demoing custom API endpoints.
  * Version: 0.1
  * Author: Christina Garofalo
  * Author URI: https://profiles.wordpress.org/cold-iron-chef/
  *
- * @package wcmtl-api/plugin
+ * @package wceh-api/plugin
  **/
 
 // Add the custom Post type
-add_action( 'init', 'wcmtlapi_custom_post_type' );
+add_action( 'init', 'wcehapi_custom_post_type' );
 
 // Add Taxonomies
-add_action( 'init', 'wcmtlapi_taxonomy_colour' );
-add_action( 'init', 'wcmtlapi_taxonomy_breed' );
-add_action( 'init', 'wcmtlapi_taxonomy_pattern' );
+add_action( 'init', 'wcehapi_taxonomy_colour' );
+add_action( 'init', 'wcehapi_taxonomy_breed' );
+add_action( 'init', 'wcehapi_taxonomy_pattern' );
 
 // Load the API (All files in the api directory)
 foreach ( glob( __DIR__ . '/api/*.php' ) as $file ) {
@@ -28,25 +28,25 @@ foreach ( glob( __DIR__ . '/api/*.php' ) as $file ) {
  *
  * @return void
  */
-function wcmtlapi_custom_post_type() {
+function wcehapi_custom_post_type() {
 	register_post_type(
-		'wcmtlapi_cat',
+		'wcehapi_cat',
 		[
 			'labels'              => [
-				'name'          => __( 'Cats', 'wcmtlapi' ),
-				'singular_name' => __( 'Cat', 'wcmtlapi' ),
-				'add_new'       => __( 'Add New Cat', 'wcmtlapi' ),
-				'add_new_item'  => __( 'Add New Cat', 'wcmtlapi' ),
-				'edit_item'     => __( 'Edit Cat', 'wcmtlapi' ),
-				'all_items'     => __( 'All Cats', 'wcmtlapi' ),
+				'name'          => __( 'Cats', 'wcehapi' ),
+				'singular_name' => __( 'Cat', 'wcehapi' ),
+				'add_new'       => __( 'Add New Cat', 'wcehapi' ),
+				'add_new_item'  => __( 'Add New Cat', 'wcehapi' ),
+				'edit_item'     => __( 'Edit Cat', 'wcehapi' ),
+				'all_items'     => __( 'All Cats', 'wcehapi' ),
 			],
-			'public'              => false,
+			'public'              => true, // This needs to be true so Polylang can see the post type.
 			'show_ui'             => true,
 			'has_archive'         => false,
 			'hierarchical'        => false,
 			'show_in_rest'        => false,
 			'exclude_from_search' => true,
-			'menu_icon'           => wcmtlapi_get_svg( 'cat' ),
+			'menu_icon'           => wcehapi_get_svg( 'cat' ),
 			'capability_type'     => 'post',
 			'rewrite'             => [
 				'slug' => 'cats',
@@ -65,18 +65,18 @@ function wcmtlapi_custom_post_type() {
  *
  * @return void
  */
-function wcmtlapi_taxonomy_breed() {
+function wcehapi_taxonomy_breed() {
 	register_taxonomy(
 		'cat_breed',
-		'wcmtlapi_cat',
+		'wcehapi_cat',
 		[
 			'labels'              => [
-				'name'          => __( 'Breeds', 'wcmtlapi' ),
-				'singular_name' => __( 'Breed', 'wcmtlapi' ),
-				'add_new'       => __( 'Add New Breed', 'wcmtlapi' ),
-				'add_new_item'  => __( 'Add New Breed', 'wcmtlapi' ),
+				'name'          => __( 'Breeds', 'wcehapi' ),
+				'singular_name' => __( 'Breed', 'wcehapi' ),
+				'add_new'       => __( 'Add New Breed', 'wcehapi' ),
+				'add_new_item'  => __( 'Add New Breed', 'wcehapi' ),
 			],
-			'public'              => false,
+			'public'              => true, // This needs to be true so Polylang can see the taxonomy.
 			'show_ui'             => true,
 			'show_in_rest'        => false,
 			'exclude_from_search' => true,
@@ -93,18 +93,18 @@ function wcmtlapi_taxonomy_breed() {
  *
  * @return void
  */
-function wcmtlapi_taxonomy_colour() {
+function wcehapi_taxonomy_colour() {
 	register_taxonomy(
 		'cat_colour',
-		'wcmtlapi_cat',
+		'wcehapi_cat',
 		[
 			'labels'              => [
-				'name'          => __( 'Colours', 'wcmtlapi' ),
-				'singular_name' => __( 'Colour', 'wcmtlapi' ),
-				'add_new'       => __( 'Add New Colour', 'wcmtlapi' ),
-				'add_new_item'  => __( 'Add New Colour', 'wcmtlapi' ),
+				'name'          => __( 'Colours', 'wcehapi' ),
+				'singular_name' => __( 'Colour', 'wcehapi' ),
+				'add_new'       => __( 'Add New Colour', 'wcehapi' ),
+				'add_new_item'  => __( 'Add New Colour', 'wcehapi' ),
 			],
-			'public'              => false,
+			'public'              => true, // This needs to be true so Polylang can see the taxonomy.
 			'show_ui'             => true,
 			'show_in_rest'        => false,
 			'exclude_from_search' => true,
@@ -121,18 +121,18 @@ function wcmtlapi_taxonomy_colour() {
  *
  * @return void
  */
-function wcmtlapi_taxonomy_pattern() {
+function wcehapi_taxonomy_pattern() {
 	register_taxonomy(
 		'cat_pattern',
-		'wcmtlapi_cat',
+		'wcehapi_cat',
 		[
 			'labels'              => [
-				'name'          => __( 'Patterns', 'wcmtlapi' ),
-				'singular_name' => __( 'Pattern', 'wcmtlapi' ),
-				'add_new'       => __( 'Add New Pattern', 'wcmtlapi' ),
-				'add_new_item'  => __( 'Add New Pattern', 'wcmtlapi' ),
+				'name'          => __( 'Patterns', 'wcehapi' ),
+				'singular_name' => __( 'Pattern', 'wcehapi' ),
+				'add_new'       => __( 'Add New Pattern', 'wcehapi' ),
+				'add_new_item'  => __( 'Add New Pattern', 'wcehapi' ),
 			],
-			'public'              => false,
+			'public'              => true, // This needs to be true so Polylang can see the taxonomy.
 			'show_ui'             => true,
 			'show_in_rest'        => false,
 			'exclude_from_search' => true,
@@ -151,7 +151,7 @@ function wcmtlapi_taxonomy_pattern() {
  *
  * @return string
  */
-function wcmtlapi_get_svg( $icon ) {
+function wcehapi_get_svg( $icon ) {
 	// Fallback to dashicons if the icon can't be found.
 	$svg = 'dashicons-admin-post';
 
@@ -164,7 +164,7 @@ function wcmtlapi_get_svg( $icon ) {
 }
 
 // Bonus: Restrict User endpoints
-add_filter( 'rest_endpoints', __NAMESPACE__ . '\\wcmtlapi_restrict_user_endpoints' );
+add_filter( 'rest_endpoints', 'wcehapi_restrict_user_endpoints' );
 
 /**
  * Remove user endpoints for unauthorized users.
@@ -173,7 +173,7 @@ add_filter( 'rest_endpoints', __NAMESPACE__ . '\\wcmtlapi_restrict_user_endpoint
  *
  * @return array $endpoints Filtered list of endpoints
  */
-function wcmtlapi_restrict_user_endpoints( $endpoints ) {
+function wcehapi_restrict_user_endpoints( $endpoints ) {
 	if ( ! is_user_logged_in() ) {
 		if ( isset( $endpoints['/wp/v2/users'] ) ) {
 			unset( $endpoints['/wp/v2/users'] );
